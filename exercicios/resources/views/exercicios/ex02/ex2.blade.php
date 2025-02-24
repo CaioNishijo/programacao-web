@@ -15,7 +15,7 @@
 
     @isset($fahrenheit)
         <h1>
-            O valor da temperatura em celsius é {{$fahrenheit}} °F
+            O valor da temperatura em fahrenheit é {{$fahrenheit}} °F
         </h1>
     @endisset
 @endsection
