@@ -18,12 +18,13 @@ Route::get('/', function () {
 });
 
 Route::get('/ex1', function(){
-    return view('ex1');
+    return view('exercicios/ex01/ex1');
 });
 
-Route::post('/ex1-resp', function(\Illuminate\Http\Request $request){
+Route::post('/ex1-resposta', function(\Illuminate\Http\Request $request){
     $n1 = intval($request->input('n1'));
     $n2 = intval($request->input('n2'));
-    $soma = $n1 + $n2;
-    return view('ex1', compact('soma'));
+    $n3 = intval($request->input('n3'));
+    $media = ($n1 + $n2 + $n3) / 3;
+    return view('exercicios/ex01/ex1', compact('media'));
 });
