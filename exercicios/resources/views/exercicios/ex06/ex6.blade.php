@@ -1,9 +1,9 @@
 @extends('../layout')
     
-@section('title', 'Exercício 4')
+@section('title', 'Exercício 6')
 
 @section('conteudo')
-    <form method="POST" action="/ex4-resposta">
+    <form method="POST" action="/ex6-resposta">
         @csrf          
         <div class="mb-3">
             <label for="largura" class="form-label">Largura</label>
