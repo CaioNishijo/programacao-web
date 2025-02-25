@@ -65,6 +65,19 @@ Route::get('/ex12', function(){
     return view('exercicios/ex12/ex12');
 });
 
+Route::get('/ex13', function(){
+    return view('exercicios/ex13/ex13');
+});
+
+Route::get('/ex14', function(){
+    return view('exercicios/ex14/ex14');
+});
+
+Route::get('/ex15', function(){
+    return view('exercicios/ex15/ex15');
+});
+
+
 Route::post('/ex1-resposta', function(\Illuminate\Http\Request $request){
     $n1 = intval($request->input('n1'));
     $n2 = intval($request->input('n2'));
@@ -142,4 +155,28 @@ Route::post('/ex12-resposta', function(\Illuminate\Http\Request $request){
     $desconto = doubleval($request->input('desconto'));
     $preco_desconto = $preco - ($preco * $desconto / 100);
     return view('exercicios/ex12/ex12', compact('preco_desconto'));
+});
+
+Route::post('/ex13-resposta', function(\Illuminate\Http\Request $request){
+    $capital = doubleval($request->input('capital'));
+    $juros = doubleval($request->input('juros'));
+    $periodo = doubleval($request->input('periodo'));
+    $juros_simples = $capital * $juros / 100 * $periodo;
+    return view('exercicios/ex13/ex13', compact('juros_simples'));
+});
+
+Route::post('/ex14-resposta', function(\Illuminate\Http\Request $request){
+    $capital = doubleval($request->input('capital'));
+    $juros = doubleval($request->input('juros'));
+    $periodo = doubleval($request->input('periodo'));
+    $juros_compostos = $capital * (1 + $juros / 100) ** $periodo;
+    return view('exercicios/ex14/ex14', compact('juros_compostos'));
+});
+
+Route::post('/ex15-resposta', function(\Illuminate\Http\Request $request){
+    $dias = intval($request->input('dias'));
+    $horas = $dias * 24;
+    $minutos = $dias * 1440;
+    $segundos = $dias * 86400;
+    return view('exercicios/ex15/ex15', compact('horas', 'minutos', 'segundos'));
 });
