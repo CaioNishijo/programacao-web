@@ -6,7 +6,7 @@
     <form method="POST" action="/ex3-resposta">
         @csrf          
         <div class="mb-3">
-            <label for="fahrenheit" class="form-label">Temperatura em graus fahreheit</label>
+            <label for="fahrenheit" class="form-label">Temperatura em graus fahrenheit</label>
             <input type="number" id="fahrenheit" name="fahrenheit" class="form-control">
         </div>
                     
