@@ -61,6 +61,10 @@ Route::get('/ex11', function(){
     return view('exercicios/ex11/ex11');
 });
 
+Route::get('/ex12', function(){
+    return view('exercicios/ex12/ex12');
+});
+
 Route::post('/ex1-resposta', function(\Illuminate\Http\Request $request){
     $n1 = intval($request->input('n1'));
     $n2 = intval($request->input('n2'));
@@ -121,14 +125,21 @@ Route::post('/ex9-resposta', function(\Illuminate\Http\Request $request){
 });
 
 Route::post('/ex10-resposta', function(\Illuminate\Http\Request $request){
-    $km = intval($request->input('km'));
+    $km = doubleval($request->input('km'));
     $milhas = $km * 0.621371;
     return view('exercicios/ex10/ex10', compact('milhas'));
 });
 
 Route::post('/ex11-resposta', function(\Illuminate\Http\Request $request){
-    $altura = intval($request->input('altura'));
+    $altura = doubleval($request->input('altura'));
     $peso = intval($request->input('peso'));
     $imc = $peso / ($altura * $altura);
     return view('exercicios/ex11/ex11', compact('imc'));
+});
+
+Route::post('/ex12-resposta', function(\Illuminate\Http\Request $request){
+    $preco = doubleval($request->input('preco'));
+    $desconto = doubleval($request->input('desconto'));
+    $preco_desconto = $preco - ($preco * $desconto / 100);
+    return view('exercicios/ex12/ex12', compact('preco_desconto'));
 });
