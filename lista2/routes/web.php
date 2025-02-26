@@ -27,3 +27,6 @@ Route::post('/ex4-resposta', [Ex4Controller::class, 'retornarPrimos']);
 
 Route::get('/ex5', [Ex4Controller::class, 'abrirFormulario']);
 Route::post('/ex5-resposta', [Ex4Controller::class, 'retornarMes']);
+
+Route::get('/ex6', [Ex4Controller::class, 'abrirFormulario']);
+Route::post('/ex6-resposta', [Ex4Controller::class, 'retornarNumeros']);
