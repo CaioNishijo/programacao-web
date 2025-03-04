@@ -14,7 +14,7 @@ class Ex6Controller extends Controller
         $numero = intval($request->input('numero'));
         $numeros = [];
 
-        for($i = 0; $i <= $numeros; $i++){
+        for($i = 0; $i <= $numero; $i++){
             array_push($numeros, $i);
         }
 
