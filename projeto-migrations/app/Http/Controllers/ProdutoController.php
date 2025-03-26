@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades;
+use App\Http\Controllers\redirect;
+use App\Http\Controllers\compact;
 use App\Models\Categoria;
 use App\Models\Produto;
 use Exception;
@@ -52,7 +54,9 @@ class ProdutoController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $produto = Produto::findOrFail($id);
+        $categorias = Categoria::all();
+        return view ("produtos.edit", compact('produto', 'categorias'));
     }
 
     /**
@@ -60,7 +64,9 @@ class ProdutoController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $produto = Produto::findOrFail($id);
+        $categorias = Categoria::all();
+        return view ("produtos.edit", compact('produto', 'categorias'));
     }
 
     /**
@@ -68,7 +74,19 @@ class ProdutoController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        try{
+            $produto = Produto::findOurFail($id);
+            $produto->update($request->all());
+            return redirect()->route('produto.index')->with('success', 'produto editado com sucesso');
+        }catch(Exception $e){
+            Log::log('Erro ao editar produto: '.$e -> getMessage(), [
+                'stack' => $e->getTraceAsString(),
+                'produto_id' => $id,
+                'request' => $request->all()
+            ]);
+
+            return redirect()->route('produtos.index')->with('failure', 'Erro ao editar produto');
+        }   
     }
 
     /**
@@ -76,6 +94,17 @@ class ProdutoController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        try{
+            $produto = Produto::findOurFail($id);
+            $produto->delete();
+            return redirect()->route('produto.index')->with('success', 'produto excluído com sucesso');
+        }catch(Exception $e){
+            Log::log('Erro ao editar produto: '.$e -> getMessage(), [
+                'stack' => $e->getTraceAsString(),
+                'produto_id' => $id
+            ]);
+
+            return redirect()->route('produtos.index')->with('failure', 'Erro ao excluir produto');
+        }   
     }
 }
